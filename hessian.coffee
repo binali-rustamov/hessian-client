@@ -21,14 +21,14 @@ class HessianClient
 			buf
 			
 		parse_response= (res_data) ->
-			buf = new Buffer res_data
-			hessianjs.decode(buf[3..-1])
+			hessianjs.decode(res_data[3..-1])
 			
 		
 		option =
 			url: @url
 			headers: {'Content-Type': 'application/binary'}
 			method: 'POST' 
+			encoding: null
 			body: build_post_data(method, args)
 		
 		cb = (error, res, body) ->

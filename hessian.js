@@ -28,9 +28,7 @@
         return buf;
       };
       parse_response = function(res_data) {
-        var buf;
-        buf = new Buffer(res_data);
-        return hessianjs.decode(buf.slice(3));
+        return hessianjs.decode(res_data.slice(3));
       };
       option = {
         url: this.url,
@@ -38,6 +36,7 @@
           'Content-Type': 'application/binary'
         },
         method: 'POST',
+        encoding: null,
         body: build_post_data(method, args)
       };
       cb = function(error, res, body) {
